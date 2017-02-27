@@ -1,4 +1,4 @@
-### Squared Euclidean Distance in PostgreSQL ###
+## Squared Euclidean Distance in PostgreSQL ##
 
 This a simple C library to compute the squared euclidean distance between SIFT descriptors in a database.
 
