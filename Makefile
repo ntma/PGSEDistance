@@ -9,4 +9,4 @@ PGSEDistance.so: PGSEDistance.o
 	gcc -shared -o PGSEDistance.so PGSEDistance.o
 
 PGSEDistance.o: PGSEDistance.c
-	gcc -o PGSEDistance.o -c -fPIC -Wall PGSEDistance.c $(CFLAGS) -I$(INCLUDEDIR)
+	gcc -o PGSEDistance.o -c -O3 -fPIC PGSEDistance.c -I$(INCLUDEDIR)

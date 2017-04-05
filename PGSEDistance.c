@@ -12,28 +12,28 @@ sed_float_to_bytea(PG_FUNCTION_ARGS)
 {
     ArrayType *arrL;
 
-    double *al;
+    float *al;
     bytea *b1;
 
     unsigned char *bytesr;
-    double ed = 0.0;
+    float ed = 0.0;
 
     arrL = PG_GETARG_ARRAYTYPE_P(0);
     b1 = PG_GETARG_BYTEA_P(1);
 
-    al = (double *) ARR_DATA_PTR(arrL);
+    al = (float *) ARR_DATA_PTR(arrL);
     bytesr = (unsigned char*) VARDATA(b1);
 
     for(int j = 0; j < 128; j+= 4){
-        ed += pow(*(al + j    ) - (((double)*(bytesr + j    )) / 512.0), 2.0);
-        ed += pow(*(al + j + 1) - (((double)*(bytesr + j + 1)) / 512.0), 2.0);
-        ed += pow(*(al + j + 2) - (((double)*(bytesr + j + 2)) / 512.0), 2.0);
-        ed += pow(*(al + j + 3) - (((double)*(bytesr + j + 3)) / 512.0), 2.0);
+        ed += powf(*(al + j    ) - (((float)*(bytesr + j    )) / 512.0), 2.0);
+        ed += powf(*(al + j + 1) - (((float)*(bytesr + j + 1)) / 512.0), 2.0);
+        ed += powf(*(al + j + 2) - (((float)*(bytesr + j + 2)) / 512.0), 2.0);
+        ed += powf(*(al + j + 3) - (((float)*(bytesr + j + 3)) / 512.0), 2.0);
     }
 
     //ed = sqrt(ed);
 
-    PG_RETURN_FLOAT8(ed);
+    PG_RETURN_FLOAT4(ed);
 }
 
 PG_FUNCTION_INFO_V1(sed_int_to_bytea);
